@@ -1,22 +1,16 @@
-const env = process.env.NODE_ENV || 'development';
-const config = require('./config/config')[env];
 const express = require('express')
 const handlebars = require('express-handlebars')
+const path = require('path')
+const homeController = require('./controllers/homeController')
+const cubeController = require('./controllers/cubeController')
 
-const app = express();
+const app = express()
+const PORT = 3000
 
-require('./config/express')(app);
-require('./config/routes')(app);
+require('./config/expressConfig')(app)
+require('./config/hbsConfig')(app)
 
-app.engine('hbs', handlebars.engine({
-    extname: 'hbs'
-}))
-app.set('view engine', 'hbs')
-app.set('views', 'src/views')
+app.use(homeController)
+app.use('/cubes', cubeController)
 
-app.get('/', (req, res) => {
-    res.send('<h1>Hello from express</h1>')
-})
-
-
-app.listen(config.port, console.log(`Listening on port ${config.port}...`));
+app.listen(PORT, () => console.log('Server is listening on port ' + PORT))
