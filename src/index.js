@@ -1,16 +1,18 @@
 const express = require('express')
 const handlebars = require('express-handlebars')
 const path = require('path')
-const homeController = require('./controllers/homeController')
-const cubeController = require('./controllers/cubeController')
-
+const routes = require('./routes')
+const dbConnect = require('./config/dbConfig')
 const app = express()
-const PORT = 3000
 
+const PORT = 3000
 require('./config/expressConfig')(app)
 require('./config/hbsConfig')(app)
 
-app.use(homeController)
-app.use('/cubes', cubeController)
+dbConnect()
+    .then(() => console.log('db connected successfuly'))
+    .catch(err => console.log(err))
+
+app.use(routes)
 
 app.listen(PORT, () => console.log('Server is listening on port ' + PORT))
