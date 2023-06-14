@@ -22,7 +22,7 @@ exports.getAll = async (search, from, to) => {
 }
 
 
-exports.getById = (cubeId) => Cube.findById(cubeId).lean()
+exports.getById = (cubeId) => Cube.findById(cubeId)
 
 exports.create = async (cubeData) => {
     const cube = new Cube(cubeData)
