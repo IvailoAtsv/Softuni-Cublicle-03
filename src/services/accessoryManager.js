@@ -5,3 +5,5 @@ exports.create = (accessoryData) => {
 }
 
 exports.getAll = () => Accessory.find()
+
+exports.getOthers = (accessoryIds) => Accessory.find({ _id: { $nin: accessoryIds } })

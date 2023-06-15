@@ -1,5 +1,6 @@
 const { log } = require('console')
 const accessoryManager = require('../services/accessoryManager')
+const Accessory = require('../models/Accessory')
 const router = require('express').Router()
 
 router.get('/create', (req, res) => {
