@@ -31,3 +31,9 @@ exports.create = async (cubeData) => {
 
     return cube
 }
+exports.attachAccessory = async (cubeId, accessoryId) => {
+    // console.log(cubeId);
+    // console.log(accessoryId);
+    return Cube.findByIdAndUpdate(cubeId,{$push : {accessories:accessoryId}})
+  
+}
