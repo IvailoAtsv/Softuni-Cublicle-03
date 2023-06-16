@@ -105,10 +105,18 @@ button, main a.btn {
     color: white;
 }
 
+.details a.btn{
+    width: 28%;
+}
+
 button:hover {
     background-color: #0B2133;
     color: white;
     cursor: pointer;
+}
+
+a.btn:hover{
+    text-decoration: underline;
 }
 
 a {
@@ -157,6 +165,7 @@ form label {
 
 input[type=text],
 input[type=number],
+input[type=password],
 select,
 textarea {
     width: 100%;
@@ -179,12 +188,12 @@ input.search {
 input[type=submit] {
     background-color: #545775;
     border: none;
-    padding: 8px;
+    padding: 0.7rem;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 18px;
-    width: 50%;
+    width: 60%;
     margin: 5px 5px 5px 25%;
     color: white;
     text-transform: uppercase;
@@ -252,7 +261,6 @@ footer {
 
 /*Animations & Transitions
 */
-
 
 @-webkit-keyframes fadeOut {
     from {
