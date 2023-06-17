@@ -3,7 +3,7 @@ const cubeManager = require('../services/cubeManager')
 const accessoryManager = require('../services/accessoryManager')
 
 router.get('/create', (req, res) => {
-    console.log(cubeManager.getAll())
+    console.log(req.user)
     res.render('create')
 })
 

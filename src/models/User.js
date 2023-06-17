@@ -12,9 +12,8 @@ userSchema.virtual('repeatPassword').set(function (value) {
     }
 })
 
-userSchema.pre('save', function () {
-    const hash = bcrypt.hash(this.password, 10)
-
+userSchema.pre('save', async function () {
+    const hash = await bcrypt.hash(this.password, 10)
     this.password = hash
 })
 
