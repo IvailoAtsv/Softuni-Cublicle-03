@@ -3,17 +3,18 @@ const cubeManager = require('../services/cubeManager')
 const accessoryManager = require('../services/accessoryManager')
 
 router.get('/create', (req, res) => {
-    console.log(req.user)
     res.render('create')
 })
 
 router.post('/create', async (req, res) => {
-    const { name, description, imageUrl, difficultyLevel } = req.body
+    const { name, description, imageUrl, difficultyLevel} = req.body
+    console.log(req.user);
     await cubeManager.create({
         name,
         description,
         imageUrl,
-        difficultyLevel: Number(difficultyLevel)
+        difficultyLevel: Number(difficultyLevel),
+        owner: req.user._id,
     })
     res.redirect('/')
 })
@@ -38,7 +39,6 @@ router.get('/:cubeId/attach-accessory', async (req, res) => {
 router.post('/:cubeId/attach-accessory', async (req, res) => {
     const cubeId = req.params.cubeId
     const { accessory:accessoryId } = req.body
-    console.log(accessoryId);
     await cubeManager.attachAccessory(cubeId, accessoryId)
 
     res.redirect(`/cubes/${cubeId}/details`)
