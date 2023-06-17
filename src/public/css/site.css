@@ -188,12 +188,12 @@ input.search {
 input[type=submit] {
     background-color: #545775;
     border: none;
-    padding: 0.7rem;
+    padding: 8px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 18px;
-    width: 60%;
+    width: 50%;
     margin: 5px 5px 5px 25%;
     color: white;
     text-transform: uppercase;

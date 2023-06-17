@@ -3,11 +3,11 @@ const cubeManager = require('../services/cubeManager')
 const accessoryManager = require('../services/accessoryManager')
 
 router.get('/create', (req, res) => {
-    res.render('create')
+    res.render('cube/create')
 })
 
 router.post('/create', async (req, res) => {
-    const { name, description, imageUrl, difficultyLevel} = req.body
+    const { name, description, imageUrl, difficultyLevel } = req.body
     console.log(req.user);
     await cubeManager.create({
         name,
@@ -25,7 +25,7 @@ router.get('/:cubeId/details', async (req, res) => {
     if (!cube) {
         return res.redirect('/404')
     } else {
-        res.render('details', { cube })
+        res.render('cube/details', { cube })
     }
 })
 
@@ -38,9 +38,16 @@ router.get('/:cubeId/attach-accessory', async (req, res) => {
 
 router.post('/:cubeId/attach-accessory', async (req, res) => {
     const cubeId = req.params.cubeId
-    const { accessory:accessoryId } = req.body
+    const { accessory: accessoryId } = req.body
     await cubeManager.attachAccessory(cubeId, accessoryId)
 
     res.redirect(`/cubes/${cubeId}/details`)
 })
+
+router.get('/:cubeId/delete', async (req, res) => {
+    const cube = await cubeManager.getById(req.params.cubeId).lean()
+    console.log(cube);
+    res.render('cube/delete', { cube })
+})
+
 module.exports = router
